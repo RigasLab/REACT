@@ -181,4 +181,4 @@ The project code is actively developped and maintained by
 
 # Citation
 
-For usage of the manuscripts in this repo, please cite [arXiv](https://arxiv.org/abs/2509.11002)
+In case of use of any of the codes, please cite [arXiv](https://arxiv.org/abs/2509.11002)
