@@ -176,7 +176,7 @@ if __name__ == '__main__':
                 torch.zeros([1, 1, hidden_dim], dtype=torch.float).cuda()
             )
 
-            for step in range(4096 * 16):
+            for step in range(4096 * 3000):
                 hidden_in = hidden_out
                 action, hidden_out = sac_trainer.policy_net.get_action(
                     state, last_action, hidden_in, deterministic=True
@@ -194,21 +194,3 @@ if __name__ == '__main__':
             state = state.ravel().tolist()
             print('Evaluate Episode: ', eps, '| Eval Episode Reward: ', episode_reward)
 
-            time.sleep(30)
-            print('Start repeat')
-            episode_reward = 0.0
-
-            for step in range(4096 * 16):
-                hidden_in = hidden_out
-                action = action_list[step]
-
-                next_state, reward, done, _ = env.step(np.array([action]))
-                next_state = next_state.ravel().tolist()
-
-                last_action = action
-                episode_reward += reward[0]
-                state = next_state
-
-            state = env.reset()
-            state = state.ravel().tolist()
-            print('Repeated Evaluate Episode: ', eps, '| Eval Episode Reward: ', episode_reward)
